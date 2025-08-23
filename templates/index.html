@@ -5,14 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>by: cArbonAto</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
-    h1 { text-align: center; color: #333; }
-    input[type="text"] { width: 300px; padding: 8px; margin: 10px auto; display: block; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
-    th { background-color: #4CAF50; color: white; }
-    tr:nth-child(even) { background-color: #f2f2f2; }
-    button { padding: 10px 15px; margin: 10px auto; display: block; cursor: pointer; }
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1f3c88;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Input y botón */
+    #busqueda {
+      width: 90%;
+      max-width: 400px;
+      padding: 12px 15px;
+      margin: 10px auto;
+      display: block;
+      border: 2px solid #1f3c88;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    #busqueda:focus {
+      border-color: #4CAF50;
+      outline: none;
+      box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+    }
+
+    #actualizarBtn {
+      display: block;
+      margin: 10px auto 20px;
+      padding: 12px 25px;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    #actualizarBtn:hover {
+      background-color: #45a049;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* Tabla */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 10px;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+      font-size: 0.95rem;
+    }
+
+    th {
+      background-color: #1f3c88;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f7f9fb;
+    }
+
+    tr:hover {
+      background-color: #e8f0fe;
+      transition: background-color 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 0.8rem;
+        padding: 8px 5px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #busqueda, #actualizarBtn {
+        width: 95%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -20,6 +119,7 @@
 <h1>Precios CENADA</h1>
 <input type="text" id="busqueda" placeholder="Buscar producto...">
 <button id="actualizarBtn">Actualizar datos</button>
+
 <table id="tablaPrecios">
   <thead>
     <tr>
@@ -34,7 +134,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr><td colspan="8">Cargando datos, Tenga paciencia...</td></tr>
+    <tr><td colspan="8">Cargando datos, tenga paciencia...</td></tr>
   </tbody>
 </table>
 
@@ -54,7 +154,7 @@ async function cargarDatos() {
       return;
     }
 
-    datosGlobales = datos; // Guardamos para búsqueda
+    datosGlobales = datos;
     mostrarDatos(datos);
   } catch (err) {
     tbody.innerHTML = `<tr><td colspan='8'>Error al cargar datos: ${err.message}</td></tr>`;
@@ -81,7 +181,6 @@ function mostrarDatos(datos) {
   `).join("");
 }
 
-// Filtrado por búsqueda
 document.getElementById("busqueda").addEventListener("input", (e) => {
   const valor = e.target.value.toLowerCase();
   const filtrados = datosGlobales.filter(item => item.producto.toLowerCase().includes(valor));
@@ -90,7 +189,6 @@ document.getElementById("busqueda").addEventListener("input", (e) => {
 
 document.getElementById("actualizarBtn").addEventListener("click", cargarDatos);
 
-// Carga inicial
 cargarDatos();
 </script>
 
