@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precios PIMA</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+    h1 { text-align: center; color: #333; }
+    input[type="text"] { width: 300px; padding: 8px; margin: 10px auto; display: block; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    th { background-color: #4CAF50; color: white; }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    button { padding: 10px 15px; margin: 10px auto; display: block; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h1>Precios PIMA</h1>
+<input type="text" id="busqueda" placeholder="Buscar producto...">
+<button id="actualizarBtn">Actualizar datos</button>
+<table id="tablaPrecios">
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Unidad</th>
+      <th>Mayorista</th>
+      <th>Mínimo</th>
+      <th>Máximo</th>
+      <th>Moda</th>
+      <th>Promedio</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td colspan="8">Cargando datos...</td></tr>
+  </tbody>
+</table>
+
+<script>
+let datosGlobales = [];
+
+async function cargarDatos() {
+  const tbody = document.querySelector("#tablaPrecios tbody");
+  tbody.innerHTML = "<tr><td colspan='8'>Cargando datos...</td></tr>";
+
+  try {
+    const res = await fetch("/api/precios");
+    const datos = await res.json();
+
+    if (datos.error) {
+      tbody.innerHTML = `<tr><td colspan='8'>${datos.error}</td></tr>`;
+      return;
+    }
+
+    datosGlobales = datos; // Guardamos para búsqueda
+    mostrarDatos(datos);
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan='8'>Error al cargar datos: ${err.message}</td></tr>`;
+  }
+}
+
+function mostrarDatos(datos) {
+  const tbody = document.querySelector("#tablaPrecios tbody");
+  if (!datos.length) {
+    tbody.innerHTML = "<tr><td colspan='8'>No hay datos disponibles</td></tr>";
+    return;
+  }
+  tbody.innerHTML = datos.map(item => `
+    <tr>
+      <td>${item.producto}</td>
+      <td>${item.unidad}</td>
+      <td>${item.mayorista}</td>
+      <td>${item.minimo}</td>
+      <td>${item.maximo}</td>
+      <td>${item.moda}</td>
+      <td>${item.promedio}</td>
+      <td>${item.fecha}</td>
+    </tr>
+  `).join("");
+}
+
+// Filtrado por búsqueda
+document.getElementById("busqueda").addEventListener("input", (e) => {
+  const valor = e.target.value.toLowerCase();
+  const filtrados = datosGlobales.filter(item => item.producto.toLowerCase().includes(valor));
+  mostrarDatos(filtrados);
+});
+
+document.getElementById("actualizarBtn").addEventListener("click", cargarDatos);
+
+// Carga inicial
+cargarDatos();
+</script>
+
+</body>
+</html>
