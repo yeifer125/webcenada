@@ -4,66 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>by: cArbonAto</title>
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.postimg.cc/KcNyWSR4/orinoco.jpg" type="image/png">
   <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #f0f4f8, #d9e2ec);
       color: #333;
       padding: 20px;
+      min-height: 100vh;
+      position: relative;
     }
 
-    /* Contenedor superior */
-    .contenedor-superior {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .info-superior {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.9rem;
-    }
-
-    .info-superior img {
-      height: 50px;
-      width: auto;
-      border-radius: 5px;
-    }
-
-    .info-superior a {
-      color: #1f3c88;
-      text-decoration: none;
-    }
-
-    .info-superior a:hover {
-      text-decoration: underline;
-    }
-
-    .imagen-superior-derecha img {
-      height: 120px;
-      width: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    /* Título central */
     h1 {
       text-align: center;
       color: #1f3c88;
       margin-bottom: 20px;
       font-size: 2rem;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      z-index: 1;
+      position: relative;
+    }
+
+    /* Contenedor de la imagen izquierda y texto */
+    .superior-izquierda-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .imagen-superior-izquierda {
+      width: 60px;
+      height: auto;
+    }
+
+    .texto-superior-izquierda {
+      font-size: 0.85rem;
+      color: #555;
+      max-width: calc(100% - 70px);
+    }
+
+    /* Imagen derecha dinámica */
+    .imagen-superior-derecha {
+      display: block;
+      max-width: 20%;
+      height: auto;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 0;
     }
 
     /* Input y botón */
@@ -78,12 +70,7 @@
       font-size: 1rem;
       transition: all 0.3s;
     }
-
-    #busqueda:focus {
-      border-color: #4CAF50;
-      outline: none;
-      box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
-    }
+    #busqueda:focus { border-color: #4CAF50; outline: none; box-shadow: 0 0 8px rgba(76,175,80,0.4); }
 
     #actualizarBtn {
       display: block;
@@ -98,110 +85,81 @@
       cursor: pointer;
       transition: all 0.3s;
     }
+    #actualizarBtn:hover { background-color: #45a049; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 
-    #actualizarBtn:hover {
-      background-color: #45a049;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    /* Tabla responsive */
+    .tabla-responsive {
+      overflow-x: auto;
+      margin-top: 10px;
     }
-
-    /* Tabla */
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
       background: white;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 0;
     }
+    th, td { padding: 12px 10px; text-align: center; border-bottom: 1px solid #e0e0e0; font-size: 0.95rem; }
+    th { background-color: #1f3c88; color: white; font-weight: 600; }
+    tr:nth-child(even) { background-color: #f7f9fb; }
+    tr:hover { background-color: #e8f0fe; transition: background-color 0.3s; }
 
-    th, td {
-      padding: 12px 10px;
-      text-align: center;
-      border-bottom: 1px solid #e0e0e0;
-      font-size: 0.95rem;
+    /* Responsive dinámico */
+    @media (max-width: 1200px) {
+      .imagen-superior-derecha { max-width: 15%; top: 15px; right: 15px; }
     }
-
-    th {
-      background-color: #1f3c88;
-      color: white;
-      font-weight: 600;
+    @media (max-width: 992px) {
+      .imagen-superior-derecha { max-width: 12%; top: 10px; right: 10px; }
     }
-
-    tr:nth-child(even) {
-      background-color: #f7f9fb;
-    }
-
-    tr:hover {
-      background-color: #e8f0fe;
-      transition: background-color 0.3s;
-    }
-
-    /* Responsividad */
     @media (max-width: 768px) {
-      .contenedor-superior {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
-
-      .imagen-superior-derecha img {
-        height: 90px;
-      }
-
-      .info-superior img {
-        height: 35px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      #busqueda, #actualizarBtn {
-        width: 95%;
-      }
-
-      th, td {
-        font-size: 0.8rem;
-        padding: 8px 5px;
-      }
+      th, td { font-size: 0.8rem; padding: 8px 5px; }
+      h1 { font-size: 1.5rem; }
+      #busqueda, #actualizarBtn { width: 95%; }
+      .imagen-superior-derecha { max-width: 35%; position: static; margin: 10px auto; display: block; }
+      .superior-izquierda-wrapper { flex-direction: column; align-items: flex-start; gap: 5px; }
+      .texto-superior-izquierda { max-width: 100%; font-size: 0.8rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="contenedor-superior">
-  <div class="info-superior">
-    <img src="https://www.pima.go.cr/wp-content/uploads/2023/11/facebook-2-1.jpg" alt="Logo PIMA">
-    <div>Software diseñado por Yeifer Guevara. Propietario de página web y API conectada en tiempo real a <a href="https://www.pima.go.cr/boletin/" target="_blank">https://www.pima.go.cr/boletin/</a></div>
-  </div>
-
-  <div class="imagen-superior-derecha">
-    <img src="https://i.postimg.cc/Dw4dShGz/istockphoto-1356315665-612x612.jpg" alt="Imagen decorativa">
+<!-- Contenedor imagen izquierda + texto -->
+<div class="superior-izquierda-wrapper">
+  <img src="https://www.pima.go.cr/wp-content/uploads/2023/11/facebook-2-1.jpg" class="imagen-superior-izquierda" alt="Logo izquierda">
+  <div class="texto-superior-izquierda">
+    Software diseñado por Yeifer Guevara, propietario de la página web y API conectada en tiempo real a 
+    <a href="https://www.pima.go.cr/boletin/" target="_blank">https://www.pima.go.cr/boletin/</a>
   </div>
 </div>
+
+<!-- Imagen derecha dinámica -->
+<img src="https://i.postimg.cc/Dw4dShGz/istockphoto-1356315665-612x612.jpg" class="imagen-superior-derecha" alt="Logo derecha">
 
 <h1>Precios CENADA</h1>
 <input type="text" id="busqueda" placeholder="Buscar producto...">
 <button id="actualizarBtn">Actualizar datos</button>
 
-<table id="tablaPrecios">
-  <thead>
-    <tr>
-      <th>Producto</th>
-      <th>Unidad</th>
-      <th>Mayorista</th>
-      <th>Mínimo</th>
-      <th>Máximo</th>
-      <th>Moda</th>
-      <th>Promedio</th>
-      <th>Fecha</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td colspan="8">Cargando datos, tenga paciencia...</td></tr>
-  </tbody>
-</table>
+<div class="tabla-responsive">
+  <table id="tablaPrecios">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Unidad</th>
+        <th>Mayorista</th>
+        <th>Mínimo</th>
+        <th>Máximo</th>
+        <th>Moda</th>
+        <th>Promedio</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="8">Cargando datos, tenga paciencia...</td></tr>
+    </tbody>
+  </table>
+</div>
 
 <script>
 let datosGlobales = [];
