@@ -17,22 +17,34 @@
       background: linear-gradient(to right, #f0f4f8, #d9e2ec);
       color: #333;
       padding: 20px;
-      position: relative;
+      padding-top: 80px; /* espacio para el texto superior izquierdo */
     }
 
-    /* Texto superior izquierdo con imagen */
+    /* Contenedor fijo superior izquierdo */
     #info {
-      position: absolute;
+      position: fixed;
       top: 10px;
       left: 10px;
       font-size: 0.85rem;
       color: #1f3c88;
       max-width: 250px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
     #info img {
       width: 50px;
       margin-top: 5px;
       display: block;
+    }
+    #info a {
+      color: #1f3c88;
+      text-decoration: none;
+    }
+    #info a:hover {
+      text-decoration: underline;
     }
 
     h1 {
@@ -127,12 +139,20 @@
       #busqueda, #actualizarBtn {
         width: 95%;
       }
+
+      #info {
+        max-width: 200px;
+        font-size: 0.75rem;
+      }
+      #info img {
+        width: 40px;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- Texto e imagen superior izquierda -->
+<!-- Texto e imagen superior izquierdo -->
 <div id="info">
   Software diseñado por Yeifer Guevara, propietario de página web y API conectada en tiempo real a 
   <a href="https://www.pima.go.cr/boletin/" target="_blank">https://www.pima.go.cr/boletin/</a>
