@@ -17,6 +17,22 @@
       background: linear-gradient(to right, #f0f4f8, #d9e2ec);
       color: #333;
       padding: 20px;
+      position: relative;
+    }
+
+    /* Texto superior izquierdo con imagen */
+    #info {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 0.85rem;
+      color: #1f3c88;
+      max-width: 250px;
+    }
+    #info img {
+      width: 50px;
+      margin-top: 5px;
+      display: block;
     }
 
     h1 {
@@ -115,6 +131,13 @@
   </style>
 </head>
 <body>
+
+<!-- Texto e imagen superior izquierda -->
+<div id="info">
+  Software diseñado por Yeifer Guevara, propietario de página web y API conectada en tiempo real a 
+  <a href="https://www.pima.go.cr/boletin/" target="_blank">https://www.pima.go.cr/boletin/</a>
+  <img src="https://www.pima.go.cr/wp-content/uploads/2023/11/facebook-2-1.jpg" alt="PIMA Logo">
+</div>
 
 <h1>Precios CENADA</h1>
 <input type="text" id="busqueda" placeholder="Buscar producto...">
