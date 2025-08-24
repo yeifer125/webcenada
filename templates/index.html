@@ -146,12 +146,12 @@
     <thead>
       <tr>
         <th>Producto</th>
-        <th>Unidad</th>
-        <th>Mayorista</th>
         <th>Mínimo</th>
         <th>Máximo</th>
         <th>Moda</th>
         <th>Promedio</th>
+        <th>Unidad</th>
+        <th>Mayorista</th>
         <th>Fecha</th>
       </tr>
     </thead>
@@ -193,12 +193,12 @@ function mostrarDatos(datos) {
   tbody.innerHTML = datos.map(item => `
     <tr>
       <td>${item.producto}</td>
-      <td>${item.unidad}</td>
-      <td>${item.mayorista}</td>
       <td>${item.minimo}</td>
       <td>${item.maximo}</td>
       <td>${item.moda}</td>
       <td>${item.promedio}</td>
+      <td>${item.unidad}</td>
+      <td>${item.mayorista}</td>
       <td>${item.fecha}</td>
     </tr>
   `).join("");
