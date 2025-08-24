@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>by: cArbonAto</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,32 +19,45 @@
       padding: 20px;
     }
 
-    /* Bloque de info encima del título */
-    #info {
+    /* Contenedor superior */
+    .contenedor-superior {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .info-superior {
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
-      font-size: 0.85rem;
-      color: #1f3c88;
-      background: rgba(255, 255, 255, 0.85);
-      padding: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      margin-bottom: 15px;
+      font-size: 0.9rem;
     }
 
-    #info img {
-      width: 50px;
-      height: auto;
+    .info-superior img {
+      height: 50px;
+      width: auto;
+      border-radius: 5px;
     }
 
-    #info a {
+    .info-superior a {
       color: #1f3c88;
       text-decoration: none;
     }
-    #info a:hover { text-decoration: underline; }
 
+    .info-superior a:hover {
+      text-decoration: underline;
+    }
+
+    .imagen-superior-derecha img {
+      height: 120px;
+      width: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Título central */
     h1 {
       text-align: center;
       color: #1f3c88;
@@ -48,6 +66,7 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
 
+    /* Input y botón */
     #busqueda {
       width: 90%;
       max-width: 400px;
@@ -59,6 +78,7 @@
       font-size: 1rem;
       transition: all 0.3s;
     }
+
     #busqueda:focus {
       border-color: #4CAF50;
       outline: none;
@@ -78,11 +98,13 @@
       cursor: pointer;
       transition: all 0.3s;
     }
+
     #actualizarBtn:hover {
       background-color: #45a049;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
+    /* Tabla */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -99,25 +121,64 @@
       border-bottom: 1px solid #e0e0e0;
       font-size: 0.95rem;
     }
-    th { background-color: #1f3c88; color: white; font-weight: 600; }
-    tr:nth-child(even) { background-color: #f7f9fb; }
-    tr:hover { background-color: #e8f0fe; transition: background-color 0.3s; }
 
+    th {
+      background-color: #1f3c88;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f7f9fb;
+    }
+
+    tr:hover {
+      background-color: #e8f0fe;
+      transition: background-color 0.3s;
+    }
+
+    /* Responsividad */
     @media (max-width: 768px) {
-      h1 { font-size: 1.5rem; }
-      #busqueda, #actualizarBtn { width: 95%; }
-      #info { font-size: 0.75rem; gap: 5px; }
-      #info img { width: 40px; }
+      .contenedor-superior {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .imagen-superior-derecha img {
+        height: 90px;
+      }
+
+      .info-superior img {
+        height: 35px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #busqueda, #actualizarBtn {
+        width: 95%;
+      }
+
+      th, td {
+        font-size: 0.8rem;
+        padding: 8px 5px;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- Bloque de info arriba del título -->
-<div id="info">
-  Software diseñado por Yeifer Guevara, propietario de página web y API conectada en tiempo real a
-  <a href="https://www.pima.go.cr/boletin/" target="_blank">https://www.pima.go.cr/boletin/</a>
-  <img src="https://www.pima.go.cr/wp-content/uploads/2023/11/facebook-2-1.jpg" alt="PIMA Logo">
+<div class="contenedor-superior">
+  <div class="info-superior">
+    <img src="https://www.pima.go.cr/wp-content/uploads/2023/11/facebook-2-1.jpg" alt="Logo PIMA">
+    <div>Software diseñado por Yeifer Guevara. Propietario de página web y API conectada en tiempo real a <a href="https://www.pima.go.cr/boletin/" target="_blank">https://www.pima.go.cr/boletin/</a></div>
+  </div>
+
+  <div class="imagen-superior-derecha">
+    <img src="https://i.postimg.cc/Dw4dShGz/istockphoto-1356315665-612x612.jpg" alt="Imagen decorativa">
+  </div>
 </div>
 
 <h1>Precios CENADA</h1>
