@@ -5,47 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>by: cArbonAto</title>
   <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #f0f4f8, #d9e2ec);
       color: #333;
       padding: 20px;
-      padding-top: 80px; /* espacio para el texto superior izquierdo */
     }
 
-    /* Contenedor fijo superior izquierdo */
+    /* Bloque de info encima del título */
     #info {
-      position: fixed;
-      top: 10px;
-      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
       font-size: 0.85rem;
       color: #1f3c88;
-      max-width: 250px;
       background: rgba(255, 255, 255, 0.85);
       padding: 10px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      z-index: 1000;
+      margin-bottom: 15px;
     }
+
     #info img {
       width: 50px;
-      margin-top: 5px;
-      display: block;
+      height: auto;
     }
+
     #info a {
       color: #1f3c88;
       text-decoration: none;
     }
-    #info a:hover {
-      text-decoration: underline;
-    }
+    #info a:hover { text-decoration: underline; }
 
     h1 {
       text-align: center;
@@ -55,7 +48,6 @@
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
 
-    /* Input y botón */
     #busqueda {
       width: 90%;
       max-width: 400px;
@@ -67,7 +59,6 @@
       font-size: 1rem;
       transition: all 0.3s;
     }
-
     #busqueda:focus {
       border-color: #4CAF50;
       outline: none;
@@ -87,13 +78,11 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-
     #actualizarBtn:hover {
       background-color: #45a049;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* Tabla */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -110,51 +99,23 @@
       border-bottom: 1px solid #e0e0e0;
       font-size: 0.95rem;
     }
-
-    th {
-      background-color: #1f3c88;
-      color: white;
-      font-weight: 600;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f7f9fb;
-    }
-
-    tr:hover {
-      background-color: #e8f0fe;
-      transition: background-color 0.3s;
-    }
+    th { background-color: #1f3c88; color: white; font-weight: 600; }
+    tr:nth-child(even) { background-color: #f7f9fb; }
+    tr:hover { background-color: #e8f0fe; transition: background-color 0.3s; }
 
     @media (max-width: 768px) {
-      th, td {
-        font-size: 0.8rem;
-        padding: 8px 5px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      #busqueda, #actualizarBtn {
-        width: 95%;
-      }
-
-      #info {
-        max-width: 200px;
-        font-size: 0.75rem;
-      }
-      #info img {
-        width: 40px;
-      }
+      h1 { font-size: 1.5rem; }
+      #busqueda, #actualizarBtn { width: 95%; }
+      #info { font-size: 0.75rem; gap: 5px; }
+      #info img { width: 40px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Texto e imagen superior izquierdo -->
+<!-- Bloque de info arriba del título -->
 <div id="info">
-  Software diseñado por Yeifer Guevara, propietario de página web y API conectada en tiempo real a 
+  Software diseñado por Yeifer Guevara, propietario de página web y API conectada en tiempo real a
   <a href="https://www.pima.go.cr/boletin/" target="_blank">https://www.pima.go.cr/boletin/</a>
   <img src="https://www.pima.go.cr/wp-content/uploads/2023/11/facebook-2-1.jpg" alt="PIMA Logo">
 </div>
